@@ -134,13 +134,13 @@ export class AuthMockApi implements TreoMockApi
         // @ Sign in - POST
         // -----------------------------------------------------------------------------------------------------
 
-        this._treoMockApiService
-            .onPost('api/auth/sign-in', 1500)
+       /* this._treoMockApiService
+            .onPost('http://localhost:8888/oauth/token', 1500)
             .reply((request) => {
 
                 // Sign in successful
-                if ( request.body.email === 'watkins.andrew@company.com' && request.body.password === 'admin' )
-                {
+                //if ( request.body.email === 'watkins.andrew@company.com' && request.body.password === 'admin' )
+                //{
                     return [
                         200,
                         {
@@ -148,7 +148,7 @@ export class AuthMockApi implements TreoMockApi
                             token_type  : 'bearer'
                         }
                     ];
-                }
+               // }
 
                 // Invalid credentials
                 return [
@@ -157,12 +157,12 @@ export class AuthMockApi implements TreoMockApi
                         error: 'Wrong email or password'
                     }
                 ];
-            });
+            });*/
 
         // -----------------------------------------------------------------------------------------------------
         // @ Verify and refresh the access token - POST
         // -----------------------------------------------------------------------------------------------------
-        this._treoMockApiService
+       /* this._treoMockApiService
             .onPost('api/auth/refresh-access-token')
             .reply((request) => {
 
@@ -188,6 +188,6 @@ export class AuthMockApi implements TreoMockApi
                         error: 'Invalid token'
                     }
                 ];
-            });
+            });*/
     }
 }

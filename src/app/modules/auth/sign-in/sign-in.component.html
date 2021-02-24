@@ -13,19 +13,14 @@
                 </div>
 
                 <!-- Title -->
-                <div class="title">Sign in</div>
+                <div class="title">Iniciar sesi&oacute;n </div>
                 <div class="subtitle">
-                    <span>Don't have an account?</span>
-                    <a class="link"
-                       [routerLink]="['/sign-up']">Sign up</a>
+                    <span>¿No tiene una cuenta?</span>
+                    <a class="link" [routerLink]="['/sign-up']">Cree una.</a>
                 </div>
 
                 <!-- Message -->
-                <treo-message *ngIf="message"
-                             [appearance]="message.appearance"
-                             [showIcon]="message.showIcon"
-                             [type]="message.type"
-                             [@shake]="message.shake">
+                <treo-message *ngIf="message" [appearance]="message.appearance" [showIcon]="message.showIcon" [type]="message.type" [@shake]="message.shake">
                     {{message.content}}
                 </treo-message>
 
@@ -34,24 +29,15 @@
 
                     <!-- Email field -->
                     <mat-form-field>
-                        <mat-label>Email address</mat-label>
-                        <input id="email"
-                               matInput
-                               [formControlName]="'email'">
+                        <mat-label>Email o Matr&iacute;cula</mat-label>
+                        <input id="email" matInput [formControlName]="'email'" [placeholder]="'Ingrese su Email o  Matr&iacute;cula'">
                     </mat-form-field>
 
                     <!-- Password field -->
                     <mat-form-field>
                         <mat-label>Password</mat-label>
-                        <input id="password"
-                               matInput
-                               type="password"
-                               [formControlName]="'password'"
-                               #passwordField>
-                        <button mat-icon-button
-                                type="button"
-                                (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
-                                matSuffix>
+                        <input id="password" matInput type="password" [formControlName]="'password'" #passwordField [placeholder]="'Ingrese su password'">
+                        <button mat-icon-button type="button" (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'" matSuffix>
                             <mat-icon *ngIf="passwordField.type === 'password'"
                                       [svgIcon]="'visibility'"></mat-icon>
                             <mat-icon *ngIf="passwordField.type === 'text'"
@@ -61,24 +47,18 @@
 
                     <!-- Field footer -->
                     <div class="field-footer">
-                        <div class="remember-me">
-                            <mat-checkbox [color]="'primary'"
-                                          [formControlName]="'rememberMe'">
+                        <!--<div class="remember-me">
+                            <mat-checkbox [color]="'primary'" [formControlName]="'rememberMe'">
                                 Remember me
                             </mat-checkbox>
-                        </div>
-                        <a class="link"
-                           [routerLink]="['/forgot-password']">Forgot password?</a>
+                        </div>-->
+                        <a class="link" [routerLink]="['/forgot-password']">¿ Olvidaste tu contraseña ?</a>
                     </div>
 
                     <!-- Submit button -->
-                    <button class="submit-button treo-mat-button-large"
-                            mat-flat-button
-                            [color]="'primary'"
-                            [disabled]="signInForm.disabled"
-                            (click)="signIn()">
+                    <button class="submit-button treo-mat-button-large" mat-flat-button [color]="'primary'" [disabled]="signInForm.disabled" (click)="signIn()">
                         <span *ngIf="!signInForm.disabled">
-                            Sign in
+                            Iniciar sesi&oacute;n
                         </span>
                         <mat-progress-spinner *ngIf="signInForm.disabled"
                                               [diameter]="24"
@@ -88,22 +68,16 @@
                     <!-- Single sign-on -->
                     <div class="sso">
                         <div class="separator">
-                            Or continue with
+                            Redes Sociales
                         </div>
                         <div class="buttons">
-                            <button class="sso-button"
-                                    type="button"
-                                    mat-stroked-button>
+                            <button class="sso-button" type="button" mat-stroked-button>
                                 <mat-icon [svgIcon]="'feather:facebook'"></mat-icon>
                             </button>
-                            <button class="sso-button"
-                                    type="button"
-                                    mat-stroked-button>
+                            <button class="sso-button" type="button" mat-stroked-button>
                                 <mat-icon [svgIcon]="'feather:twitter'"></mat-icon>
                             </button>
-                            <button class="sso-button"
-                                    type="button"
-                                    mat-stroked-button>
+                            <button class="sso-button" type="button" mat-stroked-button>
                                 <mat-icon [svgIcon]="'feather:github'"></mat-icon>
                             </button>
                         </div>
@@ -119,10 +93,7 @@
         <div class="content-container">
 
             <!-- Background - Inline SVG for easy customizations -->
-            <svg class="background"
-                 viewBox="0 0 1531 891"
-                 preserveAspectRatio="xMidYMax slice"
-                 xmlns="http://www.w3.org/2000/svg">
+            <svg class="background" viewBox="0 0 1531 891" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 182c144.327 47.973 534.462 219.712 440.509 369.87C346.555 702.028 79.877 662.846 0 638V182z"></path>
                 <path d="M1405 848c-424.366 158.009-437-164-437-272s102-425 563-576v769c-21.333 29.333-63.333 55.667-126 79z"></path>
                 <path d="M1531 162c-122.914-17.284-377.96 33.191-543.433 206.414C822.095 541.636 797.342 648.75 835.842 731.622c38.5 82.871 198.243 134.841 400.555 92.053C1438.71 780.886 1492.752 775.894 1531 768V162z"></path>
@@ -130,17 +101,21 @@
 
             <div class="content">
                 <div class="title">
-                    <span>Well-crafted,</span>
-                    <span>Coded with attention,</span>
-                    <span>Build with passion.</span>
+                    <span>Conectat-t</span>
                 </div>
                 <div class="description">
-                    Treo helps developers to build organized and well-coded admin dashboards full of beautiful and feature rich modules.
+
+
+                    Ser el canal de comunicaci&oacute;n para cualquier asunto relacionado con el ministerio.
+                    <br><br>Colaborar con otros ministerios en el desarrollo de proyectos que involucren alguno de los recursos a cargo.
+                    <br><br>Canalizar y dar seguimiento a las necesidades que lleguen al ministerio.
+                    <br><br>Dar seguimiento al desarrollo de la plataforma que concentrar&aacute; la informaci&oacute;n e historial de los congregantes.
+
                 </div>
-                <button class="learn-more-button"
-                        mat-stroked-button>
+                <!--
+                <button class="learn-more-button" mat-stroked-button>
                     Learn more
-                </button>
+                </button>-->
             </div>
 
         </div>
