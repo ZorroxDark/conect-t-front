@@ -41,7 +41,8 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadNavigation(): Observable<any>
     {
-        return this._httpClient.get('api/common/navigation');
+        return this._httpClient.get('http://localhost:8888/catalogo/getNavegacion/2');
+        // return this._httpClient.get('api/common/navigation');
     }
 
     /**
@@ -108,10 +109,11 @@ export class InitialDataResolver implements Resolve<any>
                 return {
                     messages     : data[0].messages,
                     navigation   : {
-                        compact   : data[1].compact,
-                        default   : data[1].default,
-                        futuristic: data[1].futuristic,
-                        horizontal: data[1].horizontal
+                        compact   : data[1].compactNavigation,
+                        default   : data[1].defaultNavigation,
+                        futuristic: data[1].futuristicNavigation,
+                        horizontal: data[1].horizontalNavigation
+                       
                     },
                     notifications: data[2].notifications,
                     shortcuts    : data[3].shortcuts,

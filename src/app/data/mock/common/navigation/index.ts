@@ -32,7 +32,7 @@ export class NavigationMockApi implements TreoMockApi
         this._horizontalNavigation = horizontalNavigation;
 
         // Register the API endpoints
-        this.register();
+         this.register();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -41,14 +41,17 @@ export class NavigationMockApi implements TreoMockApi
 
     /**
      * Register
-     */
+    */
     register(): void
     {
+        /*
         // -----------------------------------------------------------------------------------------------------
         // @ Navigation - GET
         // -----------------------------------------------------------------------------------------------------
         this._treoMockApiService
-            .onGet('api/common/navigation')
+            //return this._httpClient.get('http://localhost:8888/catalogo/getNavegacion/2');
+            .onGet('http://localhost:8888/catalogo/getNavegacion/2')
+            //.onGet('api/common/navigation')
             .reply(() => {
 
                 // Fill compact navigation children using the default navigation
@@ -90,6 +93,6 @@ export class NavigationMockApi implements TreoMockApi
                         horizontal: cloneDeep(this._horizontalNavigation)
                     }
                 ];
-            });
+            });**/
     }
 }

@@ -1,10 +1,5 @@
 <!-- Navigation -->
-<treo-vertical-navigation class="bg-indigo-800 theme-dark"
-                          [appearance]="'futuristic'"
-                          [mode]="isScreenSmall ? 'over' : 'side'"
-                          [name]="'mainNavigation'"
-                          [navigation]="data.navigation.futuristic"
-                          [opened]="!isScreenSmall">
+<treo-vertical-navigation class="bg-indigo-800 theme-dark" [appearance]="'futuristic'" [mode]="isScreenSmall ? 'over' : 'side'" [name]="'mainNavigation'" [navigation]="data.navigation.futuristic" [opened]="!isScreenSmall">
 
     <div treoVerticalNavigationHeader>
         <div class="logo">
@@ -21,13 +16,13 @@
             <a [routerLink]="['./']">
                 <mat-icon [svgIcon]="'heroicons_outline:briefcase'"></mat-icon>
                 <span>Company Corp.</span>
-                <mat-icon class="ml-auto -mr-1 icon-size-20"
-                          [svgIcon]="'heroicons_outline:selector'"></mat-icon>
+                <mat-icon class="ml-auto -mr-1 icon-size-20" [svgIcon]="'heroicons_outline:selector'"></mat-icon>
             </a>
         </div>
         <div class="user">
             <user [user]="data.user"></user>
             <div class="info">
+                <div class="name">VidaNueva2</div>
                 <div class="name text-indigo-50">{{data.user.name}}</div>
                 <div class="email text-indigo-300">andrew.watkins@company.com</div>
             </div>
@@ -43,9 +38,7 @@
     <div class="header">
 
         <!-- Navigation toggle button -->
-        <button class="navigation-toggle-button"
-                mat-icon-button
-                (click)="toggleNavigation('mainNavigation')">
+        <button class="navigation-toggle-button" mat-icon-button (click)="toggleNavigation('mainNavigation')">
             <mat-icon [svgIcon]="'menu'"></mat-icon>
         </button>
 

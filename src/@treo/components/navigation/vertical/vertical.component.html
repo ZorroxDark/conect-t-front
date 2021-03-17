@@ -6,10 +6,7 @@
     </div>
 
     <!-- Content -->
-    <div class="treo-vertical-navigation-content"
-         treoScrollbar
-         [treoScrollbarOptions]="{wheelPropagation: inner, suppressScrollX: true}"
-         #navigationContent>
+    <div class="treo-vertical-navigation-content" treoScrollbar [treoScrollbarOptions]="{wheelPropagation: inner, suppressScrollX: true}" #navigationContent>
 
         <!-- Content header -->
         <div class="treo-vertical-navigation-content-header">
@@ -23,40 +20,22 @@
             <ng-container *ngIf="(item.hidden && !item.hidden(item)) || !item.hidden">
 
                 <!-- Aside -->
-                <treo-vertical-navigation-aside-item *ngIf="item.type === 'aside'"
-                                                    [item]="item"
-                                                    [name]="name"
-                                                    [activeItemId]="activeAsideItemId"
-                                                    [autoCollapse]="autoCollapse"
-                                                    [skipChildren]="true"
-                                                    (click)="toggleAside(item)"></treo-vertical-navigation-aside-item>
+                <treo-vertical-navigation-aside-item *ngIf="item.type === 'aside'" [item]="item" [name]="name" [activeItemId]="activeAsideItemId" [autoCollapse]="autoCollapse" [skipChildren]="true" (click)="toggleAside(item)"></treo-vertical-navigation-aside-item>
 
                 <!-- Basic -->
-                <treo-vertical-navigation-basic-item *ngIf="item.type === 'basic'"
-                                                    [item]="item"
-                                                    [name]="name"></treo-vertical-navigation-basic-item>
+                <treo-vertical-navigation-basic-item *ngIf="item.type === 'basic'" [item]="item" [name]="name"></treo-vertical-navigation-basic-item>
 
                 <!-- Collapsable -->
-                <treo-vertical-navigation-collapsable-item *ngIf="item.type === 'collapsable'"
-                                                          [item]="item"
-                                                          [name]="name"
-                                                          [autoCollapse]="autoCollapse"></treo-vertical-navigation-collapsable-item>
+                <treo-vertical-navigation-collapsable-item *ngIf="item.type === 'collapsable'" [item]="item" [name]="name" [autoCollapse]="autoCollapse"></treo-vertical-navigation-collapsable-item>
 
                 <!-- Divider -->
-                <treo-vertical-navigation-divider-item *ngIf="item.type === 'divider'"
-                                                      [item]="item"
-                                                      [name]="name"></treo-vertical-navigation-divider-item>
+                <treo-vertical-navigation-divider-item *ngIf="item.type === 'divider'" [item]="item" [name]="name"></treo-vertical-navigation-divider-item>
 
                 <!-- Group -->
-                <treo-vertical-navigation-group-item *ngIf="item.type === 'group'"
-                                                    [item]="item"
-                                                    [name]="name"
-                                                    [autoCollapse]="autoCollapse"></treo-vertical-navigation-group-item>
+                <treo-vertical-navigation-group-item *ngIf="item.type === 'group'" [item]="item" [name]="name" [autoCollapse]="autoCollapse"></treo-vertical-navigation-group-item>
 
                 <!-- Spacer -->
-                <treo-vertical-navigation-spacer-item *ngIf="item.type === 'spacer'"
-                                                     [item]="item"
-                                                     [name]="name"></treo-vertical-navigation-spacer-item>
+                <treo-vertical-navigation-spacer-item *ngIf="item.type === 'spacer'" [item]="item" [name]="name"></treo-vertical-navigation-spacer-item>
 
             </ng-container>
 
@@ -77,14 +56,8 @@
 </div>
 
 <!-- Aside -->
-<div class="treo-vertical-navigation-aside-wrapper"
-     *ngIf="activeAsideItemId"
-     treoScrollbar
-     [treoScrollbarOptions]="{wheelPropagation: false, suppressScrollX: true}"
-     [@fadeInLeft]="position === 'left'"
-     [@fadeInRight]="position === 'right'"
-     [@fadeOutLeft]="position === 'left'"
-     [@fadeOutRight]="position === 'right'">
+<div class="treo-vertical-navigation-aside-wrapper" *ngIf="activeAsideItemId" treoScrollbar [treoScrollbarOptions]="{wheelPropagation: false, suppressScrollX: true}" [@fadeInLeft]="position === 'left'" [@fadeInRight]="position === 'right'" [@fadeOutLeft]="position === 'left'"
+    [@fadeOutRight]="position === 'right'">
 
     <!-- Items -->
     <ng-container *ngFor="let item of navigation; trackBy: trackByFn">
@@ -93,10 +66,7 @@
         <ng-container *ngIf="(item.hidden && !item.hidden(item)) || !item.hidden">
 
             <!-- Aside -->
-            <treo-vertical-navigation-aside-item *ngIf="item.type === 'aside' && item.id === activeAsideItemId"
-                                                [item]="item"
-                                                [name]="name"
-                                                [autoCollapse]="autoCollapse"></treo-vertical-navigation-aside-item>
+            <treo-vertical-navigation-aside-item *ngIf="item.type === 'aside' && item.id === activeAsideItemId" [item]="item" [name]="name" [autoCollapse]="autoCollapse"></treo-vertical-navigation-aside-item>
 
         </ng-container>
 
