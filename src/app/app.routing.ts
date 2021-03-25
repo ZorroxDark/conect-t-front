@@ -9,10 +9,10 @@ import { InitialDataResolver } from 'app/app.resolvers';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    {path: '', pathMatch : 'full', redirectTo: 'congregantes'},
 
     // Redirect signed in user to the '/example'
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
+    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'congregantes'},
 
     // Auth routes (guest)
     {
@@ -71,8 +71,11 @@ export const appRoutes: Route[] = [
         children: [
 
             // Example
-            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)}
+            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
 
+            {path: 'congregantes', loadChildren: () => import('app/modules/admin/pages/congregantes/congregantes.module').then(m => m.CongregantesModule)}
+
+            
             // 404 & Catch all
             // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
             // {path: '**', redirectTo: '404-not-found'}

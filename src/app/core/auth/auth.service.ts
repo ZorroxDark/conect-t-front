@@ -10,9 +10,6 @@ export class AuthService
     // Private
     private _authenticated: boolean;
 
-  //private _usuario: Usuario;
-    private _token: string;
-
     /**
      * Constructor
      *
@@ -42,6 +39,61 @@ export class AuthService
     {
         return localStorage.getItem('access_token');
     }
+
+
+    /**
+     * Setter & getter for access token
+     */
+     set refreshToken(refreshToken: string)
+     {
+         localStorage.setItem('refresh_token', refreshToken);
+     }
+ 
+     get refreshToken(): string
+     {
+         return localStorage.getItem('refresh_token');
+     }
+
+     /**
+     * Setter & getter for access token
+     */
+      set usuarioLogin(usuarioLogin: string)
+      {
+          localStorage.setItem('usuario_login', usuarioLogin);
+      }
+  
+      get usuarioLogin(): string
+      {
+          return localStorage.getItem('usuario_login');
+      }
+
+      /**
+     * Setter & getter for access token
+     */
+       set usuarioId(usuarioId: string)
+       {
+           localStorage.setItem('usuario_id', usuarioId);
+       }
+   
+       get usuarioId(): string
+       {
+           return localStorage.getItem('usuario_id');
+       }
+
+       /**
+     * Setter & getter for access token
+     */
+        set usuarioCon(usuarioCon: string)
+        {
+            localStorage.setItem('usuario_con', usuarioCon);
+        }
+    
+        get usuarioCon(): string
+        {
+            return localStorage.getItem('usuario_con');
+        }
+
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -80,6 +132,15 @@ export class AuthService
     
                     // Store the access token in the local storage
                     this.accessToken = response.access_token;
+
+                    // Store the access refresh token in the local storage
+                    this.refreshToken = response.refresh_token;
+
+                    // Store the access user login in the local storage
+                    let payload = this.obtenerDatosToken(response.access_token);
+                    this.usuarioLogin =  payload.user_name;
+                    this.usuarioCon= payload.user_con;
+                    this.usuarioId= payload.user_id;
     
                     // Set the authenticated flag to true
                     this._authenticated = true;
@@ -91,19 +152,7 @@ export class AuthService
            
           
 
-        /*return this._httpClient.post('http://localhost:8888/oauth/token', credentials).pipe(
-            switchMap((response: any) => {
-
-                // Store the access token in the local storage
-                this.accessToken = response.access_token;
-
-                // Set the authenticated flag to true
-                this._authenticated = true;
-
-                // Return a new observable with the response
-                return of(response);
-            })
-        );*/
+      
     }
 
     /**
@@ -112,9 +161,23 @@ export class AuthService
     signInUsingToken(): Observable<any>
     {
         // Renew token
-        return this._httpClient.post('api/auth/refresh-access-token', {
-            access_token: this.accessToken
-        }).pipe(
+
+        const urlEndpoint = 'http://localhost:8888/oauth/token';
+        
+        const credenciales = btoa('angularapp' + ':' + '12345');
+    
+        const httpHeaders = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Basic ' + credenciales
+        });
+    
+        let params = new URLSearchParams();
+        params.set('grant_type', 'refresh_token');
+        params.set('refresh_token', localStorage.getItem('refresh_token'));
+        console.log(params.toString());
+
+
+      return this._httpClient.post<any>(urlEndpoint, params.toString(), { headers: httpHeaders }).pipe(
             catchError(() => {
 
                 // Return false
@@ -124,6 +187,16 @@ export class AuthService
 
                 // Store the access token in the local storage
                 this.accessToken = response.access_token;
+                
+                // Store the access refresh token in the local storage
+                this.refreshToken = response.refresh_token;
+
+                // Store the access user login in the local storage
+                let payload = this.obtenerDatosToken(response.access_token);
+                this.usuarioLogin =  payload.user_name;
+                this.usuarioCon= payload.user_con;
+                this.usuarioId= payload.user_id;
+    
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
@@ -141,6 +214,10 @@ export class AuthService
     {
         // Remove the access token from the local storage
         localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('usuario_login');
+        localStorage.removeItem('usuario_id');
+        localStorage.removeItem('usuario_con');
 
         // Set the authenticated flag to false
         this._authenticated = false;
@@ -174,6 +251,14 @@ export class AuthService
 
         // If the access token exists and it didn't expire, sign in using it
         return this.signInUsingToken();
+    }
+
+
+    obtenerDatosToken(accessToken: string): any {
+      if (accessToken != null) {
+        return JSON.parse(atob(accessToken.split(".")[1]));
+      }
+      return null;
     }
 
 

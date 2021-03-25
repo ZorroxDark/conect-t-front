@@ -14,6 +14,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @param {HttpClient} _httpClient
      */
+
+     con:String;
     constructor(
         private _httpClient: HttpClient
     )
@@ -72,7 +74,10 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadUser(): Observable<any>
     {
-        return this._httpClient.get('api/common/user');
+        
+        this.con = localStorage.getItem('usuario_con');
+        return this._httpClient.get('http://localhost:8888/catalogo/getInfoUser/'+this.con);
+        //return this._httpClient.get('api/common/user');
     }
 
     // -----------------------------------------------------------------------------------------------------

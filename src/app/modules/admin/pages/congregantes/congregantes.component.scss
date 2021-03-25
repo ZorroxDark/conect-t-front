@@ -1,5 +1,5 @@
 @import 'treo';
-example {}
+congregantes {}
 
 // -----------------------------------------------------------------------------------------------------
 // @ Theming
@@ -11,5 +11,5 @@ example {}
     $accent: map-get($theme, accent);
     $warn: map-get($theme, warn);
     $is-dark: map-get($theme, is-dark);
-    example {}
+    congregantes {}
 }
