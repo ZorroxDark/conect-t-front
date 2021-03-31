@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { AuthUtils } from 'app/core/auth/auth.utils';
+import { ConstanteService } from '../../../utils/ConstateService';
 
 @Injectable()
 export class AuthService
@@ -32,12 +33,12 @@ export class AuthService
      */
     set accessToken(token: string)
     {
-        localStorage.setItem('access_token', token);
+        sessionStorage.setItem('access_token', token);
     }
 
     get accessToken(): string
     {
-        return localStorage.getItem('access_token');
+        return sessionStorage.getItem('access_token');
     }
 
 
@@ -46,12 +47,12 @@ export class AuthService
      */
      set refreshToken(refreshToken: string)
      {
-         localStorage.setItem('refresh_token', refreshToken);
+      sessionStorage.setItem('refresh_token', refreshToken);
      }
  
      get refreshToken(): string
      {
-         return localStorage.getItem('refresh_token');
+         return sessionStorage.getItem('refresh_token');
      }
 
      /**
@@ -59,12 +60,12 @@ export class AuthService
      */
       set usuarioLogin(usuarioLogin: string)
       {
-          localStorage.setItem('usuario_login', usuarioLogin);
+        sessionStorage.setItem('usuario_login', usuarioLogin);
       }
   
       get usuarioLogin(): string
       {
-          return localStorage.getItem('usuario_login');
+          return sessionStorage.getItem('usuario_login');
       }
 
       /**
@@ -72,12 +73,12 @@ export class AuthService
      */
        set usuarioId(usuarioId: string)
        {
-           localStorage.setItem('usuario_id', usuarioId);
+        sessionStorage.setItem('usuario_id', usuarioId);
        }
    
        get usuarioId(): string
        {
-           return localStorage.getItem('usuario_id');
+           return sessionStorage.getItem('usuario_id');
        }
 
        /**
@@ -85,12 +86,12 @@ export class AuthService
      */
         set usuarioCon(usuarioCon: string)
         {
-            localStorage.setItem('usuario_con', usuarioCon);
+          sessionStorage.setItem('usuario_con', usuarioCon);
         }
     
         get usuarioCon(): string
         {
-            return localStorage.getItem('usuario_con');
+            return sessionStorage.getItem('usuario_con');
         }
 
 
@@ -113,7 +114,7 @@ export class AuthService
         }
 
       
-            const urlEndpoint = 'http://localhost:8888/oauth/token';
+            const urlEndpoint = ConstanteService.authenticationUrl;
         
             const credenciales = btoa('angularapp' + ':' + '12345');
         
@@ -162,7 +163,7 @@ export class AuthService
     {
         // Renew token
 
-        const urlEndpoint = 'http://localhost:8888/oauth/token';
+        const urlEndpoint = ConstanteService.authenticationUrl;
         
         const credenciales = btoa('angularapp' + ':' + '12345');
     
@@ -173,7 +174,7 @@ export class AuthService
     
         let params = new URLSearchParams();
         params.set('grant_type', 'refresh_token');
-        params.set('refresh_token', localStorage.getItem('refresh_token'));
+        params.set('refresh_token', sessionStorage.getItem('refresh_token'));
         console.log(params.toString());
 
 
@@ -213,11 +214,11 @@ export class AuthService
     signOut(): Observable<any>
     {
         // Remove the access token from the local storage
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        localStorage.removeItem('usuario_login');
-        localStorage.removeItem('usuario_id');
-        localStorage.removeItem('usuario_con');
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('refresh_token');
+        sessionStorage.removeItem('usuario_login');
+        sessionStorage.removeItem('usuario_id');
+        sessionStorage.removeItem('usuario_con');
 
         // Set the authenticated flag to false
         this._authenticated = false;

@@ -50,12 +50,10 @@
                     },
                     "configurations": {
                         "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
-                                }
-                            ],
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -63,10 +61,33 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "budgets": [
-                                {
+                            "budgets": [{
                                     "type": "initial",
                                     "maximumWarning": "5mb",
+                                    "maximumError": "8mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "100kb",
+                                    "maximumError": "150kb"
+                                }
+                            ]
+                        },
+                        "development": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.dev.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "8mb",
                                     "maximumError": "8mb"
                                 },
                                 {
@@ -86,7 +107,12 @@
                     "configurations": {
                         "production": {
                             "browserTarget": "treo:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "treo:build:development"
                         }
+
+
                     }
                 },
                 "extract-i18n": {
@@ -135,6 +161,9 @@
                     "configurations": {
                         "production": {
                             "devServerTarget": "treo:serve:production"
+                        },
+                        "development": {
+                            "devServerTarget": "treo:serve:development"
                         }
                     }
                 }

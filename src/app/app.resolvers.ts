@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ConstanteService } from '../utils/ConstateService';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @param {HttpClient} _httpClient
      */
+
+     
 
      con:String;
     constructor(
@@ -43,7 +46,7 @@ export class InitialDataResolver implements Resolve<any>
      */
     private _loadNavigation(): Observable<any>
     {
-        return this._httpClient.get('http://localhost:8888/catalogo/getNavegacion/2');
+        return this._httpClient.get(ConstanteService.getNavegacion+'2');
         // return this._httpClient.get('api/common/navigation');
     }
 
@@ -75,8 +78,8 @@ export class InitialDataResolver implements Resolve<any>
     private _loadUser(): Observable<any>
     {
         
-        this.con = localStorage.getItem('usuario_con');
-        return this._httpClient.get('http://localhost:8888/catalogo/getInfoUser/'+this.con);
+        this.con = sessionStorage.getItem('usuario_con');
+        return this._httpClient.get(ConstanteService.getInfoUser+this.con);
         //return this._httpClient.get('api/common/user');
     }
 
