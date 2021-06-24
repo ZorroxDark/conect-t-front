@@ -5,6 +5,7 @@
 // https://github.com/auth0/angular2-jwt
 // -----------------------------------------------------------------------------------------------------
 
+
 export class AuthUtils
 {
     /**
@@ -185,7 +186,7 @@ export class AuthUtils
     static isTokenExpired(token: string, offsetSeconds?: number): boolean
     {
         // Return if there is no token
-        if ( !token || token === '' )
+        if ( !token ||token ===  "undefined" || token === '' )
         {
             return true;
         }
@@ -201,6 +202,17 @@ export class AuthUtils
         }
 
         // Check if the token is expired
-        return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+        const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+        var resutadoFinal: boolean;
+        var resutadoFinal2: boolean;
+        resutadoFinal = !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+        resutadoFinal2 = (Math.floor((new Date).getTime() / 1000)) >= expiry;
+        console.log('Valor :'+resutadoFinal);
+        console.log('Valor2 :'+resutadoFinal2);
+        console.log('date.valueOf :'+date.valueOf );
+        console.log('now :'+new Date().valueOf() + offsetSeconds * 1000 );
+        
+
+        return resutadoFinal;
     }
 }

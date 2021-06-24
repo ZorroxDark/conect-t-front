@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'app/core/auth/auth.service';
@@ -29,6 +29,7 @@ export class AuthInterceptor implements HttpInterceptor
     {
         // Clone the request object
         let newReq = req.clone();
+        console.log(newReq);
 
         // Request
         //
@@ -40,9 +41,22 @@ export class AuthInterceptor implements HttpInterceptor
         // the user out from the app.
         if ( this._authService.accessToken && !AuthUtils.isTokenExpired(this._authService.accessToken) )
         {
-            newReq = req.clone({
-                headers: req.headers.set('Authorization', 'Bearer ' + this._authService.accessToken)
+
+            
+            const credenciales = btoa('angularapp' + ':' + '12345');
+        
+            const httpHeaders = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + credenciales
             });
+    
+
+            newReq = req.clone({
+                headers: httpHeaders
+            });
+
+            
+            
         }
 
         // Response

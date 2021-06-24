@@ -20,8 +20,9 @@ export class AuthService
         private _httpClient: HttpClient
     )
     {
-        // Set the defaults
-        this._authenticated = false;
+
+          this._authenticated = false ;
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -33,12 +34,12 @@ export class AuthService
      */
     set accessToken(token: string)
     {
-        sessionStorage.setItem('access_token', token);
+      localStorage.setItem('access_token', token);
     }
 
     get accessToken(): string
     {
-        return sessionStorage.getItem('access_token');
+        return localStorage.getItem('access_token');
     }
 
 
@@ -47,12 +48,12 @@ export class AuthService
      */
      set refreshToken(refreshToken: string)
      {
-      sessionStorage.setItem('refresh_token', refreshToken);
+      localStorage.setItem('refresh_token', refreshToken);
      }
  
      get refreshToken(): string
      {
-         return sessionStorage.getItem('refresh_token');
+         return localStorage.getItem('refresh_token');
      }
 
      /**
@@ -60,12 +61,12 @@ export class AuthService
      */
       set usuarioLogin(usuarioLogin: string)
       {
-        sessionStorage.setItem('usuario_login', usuarioLogin);
+        localStorage.setItem('usuario_login', usuarioLogin);
       }
   
       get usuarioLogin(): string
       {
-          return sessionStorage.getItem('usuario_login');
+          return localStorage.getItem('usuario_login');
       }
 
       /**
@@ -73,12 +74,12 @@ export class AuthService
      */
        set usuarioId(usuarioId: string)
        {
-        sessionStorage.setItem('usuario_id', usuarioId);
+        localStorage.setItem('usuario_id', usuarioId);
        }
    
        get usuarioId(): string
        {
-           return sessionStorage.getItem('usuario_id');
+           return localStorage.getItem('usuario_id');
        }
 
        /**
@@ -86,12 +87,12 @@ export class AuthService
      */
         set usuarioCon(usuarioCon: string)
         {
-          sessionStorage.setItem('usuario_con', usuarioCon);
+          localStorage.setItem('usuario_con', usuarioCon);
         }
     
         get usuarioCon(): string
         {
-            return sessionStorage.getItem('usuario_con');
+            return localStorage.getItem('usuario_con');
         }
 
 
@@ -161,6 +162,7 @@ export class AuthService
      */
     signInUsingToken(): Observable<any>
     {
+      
         // Renew token
 
         const urlEndpoint = ConstanteService.authenticationUrl;
@@ -174,7 +176,7 @@ export class AuthService
     
         let params = new URLSearchParams();
         params.set('grant_type', 'refresh_token');
-        params.set('refresh_token', sessionStorage.getItem('refresh_token'));
+        params.set('refresh_token', localStorage.getItem('refresh_token'));
         console.log(params.toString());
 
 
@@ -206,6 +208,8 @@ export class AuthService
                 return of(true);
             })
         );
+
+       
     }
 
     /**
@@ -214,11 +218,11 @@ export class AuthService
     signOut(): Observable<any>
     {
         // Remove the access token from the local storage
-        sessionStorage.removeItem('access_token');
-        sessionStorage.removeItem('refresh_token');
-        sessionStorage.removeItem('usuario_login');
-        sessionStorage.removeItem('usuario_id');
-        sessionStorage.removeItem('usuario_con');
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('usuario_login');
+        localStorage.removeItem('usuario_id');
+        localStorage.removeItem('usuario_con');
 
         // Set the authenticated flag to false
         this._authenticated = false;

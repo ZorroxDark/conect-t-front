@@ -78,7 +78,7 @@ export class InitialDataResolver implements Resolve<any>
     private _loadUser(): Observable<any>
     {
         
-        this.con = sessionStorage.getItem('usuario_con');
+        this.con = localStorage.getItem('usuario_con');
         return this._httpClient.get(ConstanteService.getInfoUser+this.con);
         //return this._httpClient.get('api/common/user');
     }
